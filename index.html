@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GES 201: Use of English II — CBT Master Quiz & Exam Simulator</title>
+  <meta name="description" content="Comprehensive CBT exam prep, practice quiz, and flashcard app for GES 201 Use of English II at University of Ibadan. Includes 400+ questions on Riders to the Sea, Second-Class Citizen, Poems, Sounds & Stress.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons for rich UI -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div class="brand-text">
+          <h1 class="brand-title">GES 201 <span class="badge-tag">CBT Master</span></h1>
+          <p class="brand-subtitle">University of Ibadan • Use of English II Exam Prep</p>
+        </div>
+      </div>
+
+      <div class="header-stats-quick">
+        <div class="stat-pill" title="Total Questions in Bank">
+          <i class="fa-solid fa-database"></i>
+          <span id="header-total-q">403</span> Qs
+        </div>
+        <div class="stat-pill" title="Saved Mistakes to Review">
+          <i class="fa-solid fa-triangle-exclamation text-amber"></i>
+          <span id="header-mistakes-count">0</span> Review
+        </div>
+        <button id="theme-toggle" class="btn-icon" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mode Navigation Tabs -->
+    <nav class="nav-tabs-wrapper">
+      <div class="nav-tabs">
+        <button class="nav-tab active" data-tab="practice">
+          <i class="fa-solid fa-book-open"></i> Practice Mode
+        </button>
+        <button class="nav-tab" data-tab="exam">
+          <i class="fa-solid fa-stopwatch"></i> Timed CBT Exam
+        </button>
+        <button class="nav-tab" data-tab="flashcards">
+          <i class="fa-solid fa-layer-group"></i> Flashcards
+        </button>
+        <button class="nav-tab" data-tab="bank">
+          <i class="fa-solid fa-magnifying-glass"></i> Question Bank
+        </button>
+        <button class="nav-tab" data-tab="analytics">
+          <i class="fa-solid fa-chart-line"></i> Analytics & Mistakes
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Application Body -->
+  <main class="main-content">
+    
+    <!-- ==================== 1. PRACTICE MODE ==================== -->
+    <section id="tab-practice" class="tab-pane active">
+      <div class="dashboard-grid">
+        <!-- Filter Sidebar -->
+        <aside class="filter-sidebar card">
+          <div class="sidebar-header">
+            <h3><i class="fa-solid fa-sliders"></i> Practice Filters</h3>
+            <button id="reset-practice-filters" class="btn-text">Reset</button>
+          </div>
+
+          <div class="filter-group">
+            <label for="practice-category"><i class="fa-solid fa-tag"></i> Subject Module</label>
+            <select id="practice-category" class="form-select">
+              <option value="all">All Modules (400+ Qs)</option>
+              <option value="CA">Central Test (Actual CA Questions)</option>
+              <option value="drama">Drama: Riders to the Sea</option>
+              <option value="novel">Prose: Second-Class Citizen</option>
+              <option value="poem">Selected Poems (8 Syllabus Poems)</option>
+              <option value="sound">Phonetics & English Sounds</option>
+              <option value="stress">Word Stress & Syllable Rules</option>
+              <option value="intonation">Intonation & Suprasegmentals</option>
+              <option value="literary_terms">Literary Appreciation & Terms</option>
+              <option value="writing_skills">Writing Skills & Punctuation</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="practice-difficulty"><i class="fa-solid fa-gauge-high"></i> Difficulty Level</label>
+            <select id="practice-difficulty" class="form-select">
+              <option value="all">All Levels (Mixed)</option>
+              <option value="easy">Easy (Fundamentals)</option>
+              <option value="medium">Medium (Standard Exam)</option>
+              <option value="hard">Hard (Advanced / Distractors)</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="practice-source"><i class="fa-solid fa-feather-pointed"></i> Question Source</label>
+            <select id="practice-source" class="form-select">
+              <option value="all">All Sources</option>
+              <option value="CA">Real CA LMS Central Test</option>
+              <option value="textbook">Official Textbook (Kehinde / Akinjobi)</option>
+              <option value="predicted">High-Probability Predicted</option>
+            </select>
+          </div>
+
+          <div class="sidebar-actions">
+            <button id="start-filtered-practice" class="btn btn-primary btn-block">
+              <i class="fa-solid fa-play"></i> Apply & Shuffle
+            </button>
+          </div>
+
+          <div class="sidebar-info-card">
+            <h4><i class="fa-solid fa-circle-info"></i> Practice Guide</h4>
+            <p>Options give instant feedback with comprehensive explanations. Stressed syllables in answers are shown in high-contrast format.</p>
+          </div>
+        </aside>
+
+        <!-- Practice Question Card Area -->
+        <div class="practice-stage">
+          <div id="practice-card" class="quiz-card card">
+            <!-- Top Card Meta Bar -->
+            <div class="quiz-meta-bar">
+              <div class="quiz-badges">
+                <span id="practice-q-num" class="chip chip-id">Question 1 of 100</span>
+                <span id="practice-category-badge" class="chip chip-category">Drama</span>
+                <span id="practice-difficulty-badge" class="chip chip-difficulty">Medium</span>
+                <span id="practice-source-badge" class="chip chip-source">Predicted</span>
+              </div>
+              <div class="quiz-controls-quick">
+                <button id="practice-bookmark" class="btn-icon-subtle" title="Save to Weak Areas / Bookmark">
+                  <i class="fa-regular fa-bookmark"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Reference / Subtitle -->
+            <div id="practice-ref-text" class="question-reference">
+              <i class="fa-solid fa-book-bookmark"></i> <span>Reference: Riders to the Sea</span>
+            </div>
+
+            <!-- Question Prompt -->
+            <div class="question-body">
+              <h2 id="practice-question-text" class="question-text">
+                Loading question...
+              </h2>
+            </div>
+
+            <!-- Options Container -->
+            <div id="practice-options" class="options-grid">
+              <!-- Dynamically populated -->
+            </div>
+
+            <!-- Explanation Box (Appears after answer is selected) -->
+            <div id="practice-explanation-box" class="explanation-box hidden">
+              <div class="explanation-header">
+                <div class="explanation-status">
+                  <i id="explanation-icon" class="fa-solid fa-circle-check"></i>
+                  <span id="explanation-title">Correct Answer</span>
+                </div>
+                <span class="confidence-tag"><i class="fa-solid fa-shield-halved"></i> Verified Accuracy</span>
+              </div>
+              <p id="practice-explanation-text" class="explanation-content"></p>
+            </div>
+
+            <!-- Bottom Navigation Bar -->
+            <div class="quiz-footer">
+              <button id="practice-prev-btn" class="btn btn-secondary">
+                <i class="fa-solid fa-arrow-left"></i> Previous
+              </button>
+              <div class="quiz-progress-text">
+                <span id="practice-score-tally">Answered: 0 | Score: 0</span>
+              </div>
+              <button id="practice-next-btn" class="btn btn-primary">
+                Next <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 2. TIMED EXAM MODE ==================== -->
+    <section id="tab-exam" class="tab-pane">
+      <div id="exam-lobby" class="exam-lobby card">
+        <div class="lobby-hero">
+          <div class="lobby-badge"><i class="fa-solid fa-clock"></i> Official Simulation</div>
+          <h2>University of Ibadan Central Test (C-UI-GES201) Simulator</h2>
+          <p class="lobby-description">
+            Experience the exact CBT conditions of the Central Test. This simulation faithfully replicates question distribution, timing constraints, and distractor mechanics based on the 2025/2026 examination syllabus.
+          </p>
+        </div>
+
+        <div class="exam-config-grid">
+          <div class="config-card">
+            <div class="config-icon"><i class="fa-solid fa-list-ol"></i></div>
+            <h4>Question Count</h4>
+            <select id="exam-q-count" class="form-select">
+              <option value="32" selected>32 Questions (Official Central Test Size)</option>
+              <option value="20">20 Questions (Express Quick Test)</option>
+              <option value="50">50 Questions (Comprehensive Mock)</option>
+            </select>
+          </div>
+
+          <div class="config-card">
+            <div class="config-icon"><i class="fa-solid fa-stopwatch"></i></div>
+            <h4>Time Limit</h4>
+            <select id="exam-duration" class="form-select">
+              <option value="20" selected>20 Minutes (Standard CBT Time)</option>
+              <option value="15">15 Minutes (Intense Speed Run)</option>
+              <option value="30">30 Minutes (Relaxed Practice)</option>
+            </select>
+          </div>
+
+          <div class="config-card">
+            <div class="config-icon"><i class="fa-solid fa-shuffle"></i></div>
+            <h4>Question Mix</h4>
+            <select id="exam-mix" class="form-select">
+              <option value="balanced" selected>Standard Balanced Mix (Drama, Prose, Poems, Sounds, Stress)</option>
+              <option value="all">Complete Random Draw Across All Modules</option>
+              <option value="ca_focused">Central Test & Verified Items Priority</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="lobby-notice alert-box">
+          <i class="fa-solid fa-circle-exclamation alert-icon"></i>
+          <div>
+            <strong>Test Rules:</strong> Instant feedback is disabled during the timed exam. You can flag questions and navigate freely using the question palette. Results and detailed answer keys appear upon submission.
+          </div>
+        </div>
+
+        <div class="lobby-start-action">
+          <button id="start-exam-btn" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-play"></i> Start Timed Central Test
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Exam Stage (Hidden until started) -->
+      <div id="exam-stage" class="exam-stage hidden">
+        <div class="exam-header-bar card">
+          <div class="exam-title-meta">
+            <h3>GES 201 CENTRAL TEST CBT</h3>
+            <span class="exam-attempt-tag">Simulated Attempt #1</span>
+          </div>
+
+          <div class="exam-timer-wrapper">
+            <div class="timer-box" id="timer-box">
+              <i class="fa-solid fa-stopwatch timer-icon"></i>
+              <span id="exam-timer-display" class="timer-text">20:00</span>
+            </div>
+          </div>
+
+          <div class="exam-finish-action">
+            <button id="submit-exam-early-btn" class="btn btn-danger btn-sm">
+              <i class="fa-solid fa-check-double"></i> Submit & Finish Test
+            </button>
+          </div>
+        </div>
+
+        <div class="exam-layout-grid">
+          <!-- Active Exam Question Card -->
+          <div class="exam-question-column">
+            <div class="quiz-card card">
+              <div class="quiz-meta-bar">
+                <div class="quiz-badges">
+                  <span id="exam-current-q-num" class="chip chip-id">Question 1 of 32</span>
+                  <span id="exam-category-chip" class="chip chip-category">Category</span>
+                  <span id="exam-diff-chip" class="chip chip-difficulty">Medium</span>
+                </div>
+                <button id="exam-flag-btn" class="btn-flag" title="Flag for Review">
+                  <i class="fa-regular fa-flag"></i> Flag
+                </button>
+              </div>
+
+              <div id="exam-ref-display" class="question-reference">
+                <i class="fa-solid fa-book-bookmark"></i> <span>Reference</span>
+              </div>
+
+              <div class="question-body">
+                <h2 id="exam-question-text" class="question-text">
+                  Loading examination question...
+                </h2>
+              </div>
+
+              <div id="exam-options-container" class="options-grid">
+                <!-- Exam Options rendered here -->
+              </div>
+
+              <div class="quiz-footer">
+                <button id="exam-prev-btn" class="btn btn-secondary">
+                  <i class="fa-solid fa-arrow-left"></i> Previous
+                </button>
+                <button id="exam-clear-choice-btn" class="btn btn-text">
+                  Clear Choice
+                </button>
+                <button id="exam-next-btn" class="btn btn-primary">
+                  Next <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Exam Palette Navigator -->
+          <aside class="exam-palette-column card">
+            <div class="palette-header">
+              <h4><i class="fa-solid fa-table-cells"></i> Question Palette</h4>
+              <div class="palette-legend">
+                <span class="legend-item"><span class="legend-dot answered"></span> Answered</span>
+                <span class="legend-item"><span class="legend-dot flagged"></span> Flagged</span>
+                <span class="legend-item"><span class="legend-dot unanswered"></span> Unanswered</span>
+              </div>
+            </div>
+
+            <div id="exam-palette-grid" class="palette-grid">
+              <!-- Question buttons (1..32) rendered dynamically -->
+            </div>
+
+            <div class="palette-summary">
+              <div class="palette-summary-row">
+                <span>Attempted:</span>
+                <strong id="palette-answered-count">0 / 32</strong>
+              </div>
+              <div class="palette-summary-row">
+                <span>Flagged for review:</span>
+                <strong id="palette-flagged-count">0</strong>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- Exam Results Summary View (Hidden until submitted) -->
+      <div id="exam-results-stage" class="exam-results card hidden">
+        <div class="results-header">
+          <div class="score-ring-wrapper">
+            <div class="score-circle">
+              <span id="results-score-percent" class="score-big">92%</span>
+              <span class="score-label">Final Score</span>
+            </div>
+          </div>
+          <div class="results-overview-text">
+            <h2 id="results-grade-heading">Outstanding Performance!</h2>
+            <p id="results-meta-summary">
+              You scored <strong>30 out of 32</strong> (Equivalent to <strong>32.8 / 35.0 marks</strong> on UI LMS grading scale).
+            </p>
+            <div class="results-metrics">
+              <div class="metric-item">
+                <span class="metric-val" id="res-correct-count">30</span>
+                <span class="metric-label">Correct</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-val text-rose" id="res-wrong-count">2</span>
+                <span class="metric-label">Incorrect</span>
+              </div>
+              <div class="metric-item">
+                <span class="metric-val" id="res-time-spent">16m 42s</span>
+                <span class="metric-label">Time Spent</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category Performance Breakdown -->
+        <div class="results-breakdown-section">
+          <h3><i class="fa-solid fa-chart-pie"></i> Performance by Course Module</h3>
+          <div id="results-category-bars" class="category-bars-grid">
+            <!-- Dynamically populated bars -->
+          </div>
+        </div>
+
+        <!-- Detailed Review Accordion -->
+        <div class="results-review-section">
+          <div class="review-header">
+            <h3><i class="fa-solid fa-clipboard-check"></i> Comprehensive Review & Answer Explanations</h3>
+            <div class="review-filters">
+              <button class="btn btn-sm btn-secondary active" id="filter-review-all">All Questions</button>
+              <button class="btn btn-sm btn-secondary" id="filter-review-wrong">Mistakes Only</button>
+            </div>
+          </div>
+
+          <div id="results-review-list" class="review-list">
+            <!-- Questions rendered with student choice, correct answer, and explanation -->
+          </div>
+        </div>
+
+        <div class="results-actions">
+          <button id="retake-exam-btn" class="btn btn-primary">
+            <i class="fa-solid fa-rotate-right"></i> Take Another Mock Test
+          </button>
+          <button id="save-mistakes-to-practice-btn" class="btn btn-secondary">
+            <i class="fa-solid fa-bookmark"></i> Send Mistakes to Weak Areas
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. FLASHCARDS MODE ==================== -->
+    <section id="tab-flashcards" class="tab-pane">
+      <div class="flashcards-container">
+        <!-- Controls Bar -->
+        <div class="flashcards-toolbar card">
+          <div class="fc-filter">
+            <label for="fc-category-select"><i class="fa-solid fa-filter"></i> Topic Deck:</label>
+            <select id="fc-category-select" class="form-select">
+              <option value="all">All Flashcards (400+ Cards)</option>
+              <option value="drama">Riders to the Sea (Synge)</option>
+              <option value="novel">Second-Class Citizen (Emecheta)</option>
+              <option value="poem">Selected 8 Poems</option>
+              <option value="sound">Phonetic Symbols & Rules</option>
+              <option value="stress">Word Stress Patterns</option>
+              <option value="intonation">Intonation Tunes & Tone Units</option>
+              <option value="literary_terms">Literary Terms & Devices</option>
+              <option value="writing_skills">Writing Skills & Memos</option>
+            </select>
+          </div>
+
+          <div class="fc-stats">
+            <span id="fc-counter">Card 1 of 403</span>
+          </div>
+
+          <div class="fc-quick-actions">
+            <button id="fc-shuffle-btn" class="btn btn-secondary btn-sm" title="Shuffle Deck">
+              <i class="fa-solid fa-shuffle"></i> Shuffle
+            </button>
+            <button id="fc-flip-btn" class="btn btn-primary btn-sm">
+              <i class="fa-solid fa-repeat"></i> Flip Card (Space)
+            </button>
+          </div>
+        </div>
+
+        <!-- 3D Flipping Card Stage -->
+        <div class="fc-stage">
+          <div id="flashcard-element" class="flashcard">
+            <!-- FRONT SIDE -->
+            <div class="flashcard-face flashcard-front">
+              <div class="fc-badge-strip">
+                <span id="fc-cat-badge" class="chip chip-category">Poem</span>
+                <span id="fc-diff-badge" class="chip chip-difficulty">Medium</span>
+                <span class="fc-hint-text"><i class="fa-solid fa-hand-pointer"></i> Click card or press Space to flip</span>
+              </div>
+
+              <div class="fc-question-container">
+                <span id="fc-ref" class="fc-ref">Wordsworth: My Heart Leaps Up</span>
+                <h3 id="fc-question" class="fc-prompt">
+                  "The Child is father of the Man" is an example of what literary figure?
+                </h3>
+              </div>
+
+              <div class="fc-tap-prompt">
+                <span>Reveal Correct Answer & Full Explanation <i class="fa-solid fa-arrow-turn-down"></i></span>
+              </div>
+            </div>
+
+            <!-- BACK SIDE -->
+            <div class="flashcard-face flashcard-back">
+              <div class="fc-badge-strip">
+                <span class="chip chip-source"><i class="fa-solid fa-key"></i> Key Examination Answer</span>
+                <span class="fc-hint-text"><i class="fa-solid fa-repeat"></i> Click to flip back</span>
+              </div>
+
+              <div class="fc-answer-container">
+                <div class="fc-answer-highlight">
+                  <span class="fc-answer-label">CORRECT ANSWER:</span>
+                  <h3 id="fc-correct-answer">A. Paradox</h3>
+                </div>
+
+                <div class="fc-explanation-wrapper">
+                  <h4><i class="fa-solid fa-circle-info"></i> Exam Context & Rationale:</h4>
+                  <p id="fc-explanation">
+                    It is a classic paradox: a statement that appears contradictory on the surface, but reveals a profound philosophical truth about childhood shaping adult nature.
+                  </p>
+                </div>
+              </div>
+
+              <div class="fc-footer-strip">
+                <span id="fc-skill" class="chip chip-id">figures_of_speech</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flashcards Bottom Navigation -->
+        <div class="fc-navigation-bar">
+          <button id="fc-prev-btn" class="btn btn-secondary">
+            <i class="fa-solid fa-chevron-left"></i> Previous Card
+          </button>
+          <div class="fc-key-hints">
+            <span><kbd>←</kbd> Prev</span>
+            <span><kbd>Space</kbd> Flip</span>
+            <span><kbd>→</kbd> Next</span>
+          </div>
+          <button id="fc-next-btn" class="btn btn-primary">
+            Next Card <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 4. QUESTION BANK BROWSER ==================== -->
+    <section id="tab-bank" class="tab-pane">
+      <div class="bank-container">
+        <!-- Search and Filter Bar -->
+        <div class="bank-search-bar card">
+          <div class="bank-search-input-wrap">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="bank-search-query" class="form-input" placeholder="Search by keyword, poet, novel character, IPA symbol (e.g. /ʒ/), stress word...">
+          </div>
+
+          <div class="bank-filter-row">
+            <select id="bank-filter-category" class="form-select">
+              <option value="all">All Modules</option>
+              <option value="CA">Central Test (CA)</option>
+              <option value="drama">Riders to the Sea</option>
+              <option value="novel">Second-Class Citizen</option>
+              <option value="poem">Selected Poems</option>
+              <option value="sound">Sounds & Phonetics</option>
+              <option value="stress">Word Stress</option>
+              <option value="intonation">Intonation</option>
+              <option value="literary_terms">Literary Terms</option>
+              <option value="writing_skills">Writing Skills</option>
+            </select>
+
+            <select id="bank-filter-difficulty" class="form-select">
+              <option value="all">All Difficulties</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+
+            <select id="bank-filter-source" class="form-select">
+              <option value="all">All Sources</option>
+              <option value="CA">Actual CA CBT</option>
+              <option value="textbook">Course Textbook</option>
+              <option value="predicted">Predicted Items</option>
+            </select>
+
+            <div class="bank-counter-badge">
+              <span id="bank-match-count">Showing 403 questions</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question List Output -->
+        <div id="bank-list-wrapper" class="bank-list">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. ANALYTICS & WEAK AREAS ==================== -->
+    <section id="tab-analytics" class="tab-pane">
+      <div class="analytics-container">
+        <!-- Metric Cards Grid -->
+        <div class="analytics-metrics-grid">
+          <div class="metric-card card">
+            <div class="metric-icon bg-indigo"><i class="fa-solid fa-brain"></i></div>
+            <div class="metric-data">
+              <span id="stats-total-attempted" class="metric-num">0</span>
+              <span class="metric-sub">Questions Attempted</span>
+            </div>
+          </div>
+
+          <div class="metric-card card">
+            <div class="metric-icon bg-emerald"><i class="fa-solid fa-bullseye"></i></div>
+            <div class="metric-data">
+              <span id="stats-overall-accuracy" class="metric-num">0%</span>
+              <span class="metric-sub">Average Accuracy</span>
+            </div>
+          </div>
+
+          <div class="metric-card card">
+            <div class="metric-icon bg-amber"><i class="fa-solid fa-stopwatch"></i></div>
+            <div class="metric-data">
+              <span id="stats-exams-completed" class="metric-num">0</span>
+              <span class="metric-sub">Full CBT Mocks Completed</span>
+            </div>
+          </div>
+
+          <div class="metric-card card">
+            <div class="metric-icon bg-rose"><i class="fa-solid fa-fire"></i></div>
+            <div class="metric-data">
+              <span id="stats-saved-mistakes" class="metric-num">0</span>
+              <span class="metric-sub">Weak Area Items to Review</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="analytics-content-grid">
+          <!-- Left: Weak Areas / Mistakes Drill -->
+          <div class="card weak-areas-panel">
+            <div class="panel-header">
+              <div>
+                <h3><i class="fa-solid fa-triangle-exclamation text-amber"></i> Saved Mistakes & Weak Areas Drill</h3>
+                <p class="panel-desc">Questions you missed during Practice or Exam mode are tracked here for focused revision.</p>
+              </div>
+              <div class="panel-actions">
+                <button id="start-mistakes-drill-btn" class="btn btn-primary btn-sm">
+                  <i class="fa-solid fa-bolt"></i> Practice Weak Areas
+                </button>
+                <button id="clear-mistakes-btn" class="btn btn-secondary btn-sm">
+                  Clear
+                </button>
+              </div>
+            </div>
+
+            <div id="mistakes-list-container" class="mistakes-list">
+              <div class="empty-state">
+                <i class="fa-solid fa-circle-check text-emerald"></i>
+                <p>No mistakes logged yet! Take a practice session or CBT mock exam to generate personalized revision targets.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Exam History & Module Mastery -->
+          <div class="card history-panel">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-clock-rotate-left"></i> CBT Exam Attempt History</h3>
+              <button id="reset-history-btn" class="btn-text">Reset History</button>
+            </div>
+
+            <div id="exam-history-list" class="history-list">
+              <div class="empty-state">
+                <i class="fa-solid fa-stopwatch"></i>
+                <p>No exam attempts recorded yet. Launch the Timed CBT Exam to test your speed and accuracy!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal for Exam Submission Confirmation -->
+  <div id="confirm-submit-modal" class="modal-backdrop hidden">
+    <div class="modal-dialog card">
+      <div class="modal-icon"><i class="fa-solid fa-circle-question"></i></div>
+      <h3>Submit CBT Examination?</h3>
+      <p id="modal-submit-summary">You have answered 30 out of 32 questions. 2 questions remain unanswered.</p>
+      <div class="modal-actions">
+        <button id="modal-cancel-btn" class="btn btn-secondary">Return to Test</button>
+        <button id="modal-confirm-btn" class="btn btn-danger">Yes, Submit Now</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <p>GES 201: Use of English II CBT Master • Built for University of Ibadan Students (2025/2026 Academic Session)</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

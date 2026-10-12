@@ -1,0 +1,26 @@
+# Course PDFs (large binary assets)
+*.pdf
+
+# WhatsApp raw photos
+*.jpg
+*.jpeg
+*.png
+
+# Archives and build bundles
+*.zip
+
+# Scratch scripts and temporary caches
+scratch/
+__pycache__/
+*.pyc
+.tempmediaStorage/
+*.log
+
+# Redundant distribution mirror (root already serves the app)
+web_distribution/
+
+# Temporary scratch notes
+textbook_toc.txt
+nexus_minds_ca.txt
+inspect_materials.py
+extract_textbook_info.py
